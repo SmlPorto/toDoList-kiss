@@ -1,17 +1,41 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
- */
+import java.util.Scanner;
+import java.util.ArrayList;
 
-package arqsoftware.todolist.kiss;
-
-/**
- *
- * @author samue
- */
 public class ToDoListKiss {
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
+   public static void main(String[] args) {
+        ArrayList<String> list = new ArrayList();
+        int option, i, length;
+        String item;
+        
+        Scanner read = new Scanner(System.in);
+        
+        boolean encerrar = false;
+        do {
+            System.out.println("\n1 | Adicionar Tarefa \n2 | Concluir Tarefa \n3 | Ver Tarefas");       
+            option = read.nextInt();
+            
+            switch (option) {
+                case 1 -> {               
+                    item = read.nextLine();
+                    item += read.nextLine();
+                    list.add(item);
+                }
+                case 2 -> {
+                    System.out.println("Informe o indice do item concluido: ");
+                    i = read.nextInt();
+                    list.remove(i);
+                }
+                case 3 -> {
+                    length = list.size();
+                    System.out.printf("\n");
+                    for (i=0; i<length; i++) {
+                        System.out.printf("%d - %s\n", i, list.get(i));
+                    }
+                }
+                default -> encerrar = true;     
+            }   
+        }   
+        while (!encerrar);
     }
 }
